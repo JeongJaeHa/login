@@ -12,13 +12,13 @@ function login()  {
     id: id.value,
     pw: pw.value,
   };
-  console.log(req);
+
 
   fetch("/login", {
-    method: 'POST',
+    method: "POST",
     headers: {
-      "content-Type": "application/json"
-    }
-    body: JSON.stringify(req)
-  })
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(req),
+  });
 }
