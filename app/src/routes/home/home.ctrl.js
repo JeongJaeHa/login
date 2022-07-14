@@ -18,10 +18,24 @@ const output = {
 };
 
 const process = {
-  login: (req, res) => {
+  login: async (req, res) => {
     const user = new User(req.body);
-    const response = user.login();
+    const response = await user.login();
     return res.json(response);
+  },
+
+  register: (req, res) => {
+    const user = new User(req.body);
+    const response = user.register();
+    return res.json(response);
+  },
+};
+
+
+module.exports = {
+  output,
+  process,
+};
 
     // const id = req.body.id,
     // pw = req.body.pw;
@@ -41,18 +55,3 @@ const process = {
     // response.success = false;
     // response.msg = "로그인에 실패 하셨습니다.";
     // return res.json(response);
-  },
-
-  register: (req, res) => {
-    const user = new User(req.body);
-    const response = user.register();
-    return res.json(response);
-  }
-
-};
-
-
-module.exports = {
-  output,
-  process,
-};
