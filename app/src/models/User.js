@@ -1,5 +1,6 @@
 "use strict"
 
+const { response } = require("express");
 const UserStorage = require("./UserStorage");
 
 class User {
@@ -19,10 +20,15 @@ class User {
       }
       return {success: false, msg: "존재하지 않는 ID입니다."};
     }
-    register() {
-      const client = this.body;
-      UserStorage.save(client);
-    }
+    async register() {
+        const client = this.body;
+          try {
+            const register = await UserStorage.save(client);
+            return register;
+          } catch(err) {
+            return { success: false, msg: err };
+          }
+      }
   }
 
 
